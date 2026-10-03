@@ -1,0 +1,265 @@
+// Sheaf — multi-quote. Built on the theme's own variables so it fits the
+// default theme, Bespoke and dark mode without styling of its own.
+
+// The toggle beside Reply.
+.SheafToggle {
+  .Button-icon {
+    font-size: 0.85em;
+  }
+  &--on {
+    color: var(--primary-color) !important;
+    font-weight: 600;
+  }
+}
+.SheafToggle-count {
+  display: inline-block;
+  min-width: 1.5em;
+  margin-left: 5px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--primary-color);
+  color: var(--body-bg);
+  font-size: 11px;
+  line-height: 1.5em;
+  text-align: center;
+  font-weight: 700;
+}
+
+// flarum/mentions' selected-text popup, with our button beside its Quote.
+.SheafQuoteGroup {
+  display: inline-flex;
+  padding: 0;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  white-space: nowrap;
+  // The wrapper is not a .Button, so mentions' tooltip colours do not reach
+  // it; give it the same ones.
+  background: var(--tooltip-bg);
+  color: var(--tooltip-color);
+  box-shadow: 0 2px 8px var(--shadow-color);
+  z-index: 5;
+
+  > .Button {
+    background: transparent;
+    color: inherit;
+    border-radius: 0;
+    &:hover,
+    &:focus-visible {
+      background: ~"color-mix(in srgb, currentColor 14%, transparent)";
+    }
+  }
+  > .Button + .Button {
+    border-left: 1px solid ~"color-mix(in srgb, currentColor 22%, transparent)";
+  }
+}
+
+// The floating pill.
+.Sheaf-pill {
+  position: fixed;
+  left: 50%;
+  bottom: ~"calc(var(--sheaf-offset, 0px) + 16px + env(safe-area-inset-bottom, 0px))";
+  transform: translateX(-50%);
+  z-index: ~"calc(var(--zindex-composer, 1020) + 1)";
+  display: flex;
+  align-items: stretch;
+  max-width: ~"calc(100vw - 32px)";
+  border-radius: 999px;
+  background: var(--tooltip-bg);
+  color: var(--tooltip-color);
+  box-shadow: 0 6px 24px var(--shadow-color), 0 1px 3px var(--shadow-color);
+  animation: Sheaf-in 0.18s ease-out;
+
+  button {
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    &:focus-visible {
+      outline: 2px solid var(--primary-color);
+      outline-offset: -2px;
+    }
+    &[disabled] {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+}
+.Sheaf-root {
+  // The pill is fixed; its root takes up no room.
+  display: contents;
+}
+@keyframes Sheaf-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 8px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+.Sheaf-reply {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px 10px 18px;
+  border-radius: 999px 0 0 999px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  &:hover:not([disabled]) {
+    background: ~"color-mix(in srgb, currentColor 12%, transparent)";
+  }
+  .icon {
+    color: var(--primary-color);
+    filter: brightness(1.35);
+  }
+}
+.Sheaf-iconButton {
+  width: 40px;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    background: ~"color-mix(in srgb, currentColor 12%, transparent)";
+  }
+}
+.Sheaf-pill .Sheaf-iconButton {
+  border-left: 1px solid ~"color-mix(in srgb, currentColor 18%, transparent)";
+}
+.Sheaf-pill .Sheaf-clear {
+  border-radius: 0 999px 999px 0;
+  width: 44px;
+  padding-right: 4px;
+}
+
+// What's collected.
+.Sheaf-popover {
+  position: absolute;
+  left: 50%;
+  bottom: ~"calc(100% + 10px)";
+  transform: translateX(-50%);
+  width: 340px;
+  max-width: ~"calc(100vw - 32px)";
+  max-height: 50vh;
+  overflow: auto;
+  border-radius: ~"calc(var(--border-radius) * 2)";
+  background: var(--body-bg);
+  color: var(--text-color);
+  border: 1px solid var(--control-bg);
+  box-shadow: 0 8px 28px var(--shadow-color);
+}
+.Sheaf-popoverHead {
+  padding: 10px 14px 6px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted-color);
+}
+.Sheaf-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 6px;
+}
+.Sheaf-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 6px 8px 14px;
+  border-top: 1px solid var(--control-bg);
+  &:first-child {
+    border-top: 0;
+  }
+}
+.Sheaf-itemText {
+  flex: 1;
+  min-width: 0;
+  font-size: 13px;
+  line-height: 1.4;
+}
+.Sheaf-itemWho {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.Sheaf-itemNumber {
+  color: var(--muted-color);
+}
+.Sheaf-tag {
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--control-bg);
+  color: var(--control-color);
+  font-size: 11px;
+  line-height: 1.6;
+}
+.Sheaf-itemExcerpt,
+.Sheaf-itemFrom {
+  color: var(--muted-color);
+  margin-top: 2px;
+  overflow-wrap: anywhere;
+}
+.Sheaf-itemFrom {
+  font-size: 12px;
+}
+.Sheaf-popover .Sheaf-remove {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: var(--muted-color);
+  border: 0;
+  &:hover,
+  &:focus-visible {
+    background: var(--control-bg);
+    color: var(--text-color);
+  }
+}
+
+@media (max-width: 767px) {
+  // Left-aligned on a phone: the bottom-right corner is where themes and
+  // extensions park their round floating buttons (back to top, who's online).
+  .Sheaf-pill {
+    left: ~"calc(16px + env(safe-area-inset-left, 0px))";
+    transform: none;
+    max-width: ~"calc(100vw - 96px)";
+    bottom: ~"calc(var(--sheaf-offset, 0px) + 12px + env(safe-area-inset-bottom, 0px))";
+    animation-name: Sheaf-in-phone;
+  }
+  .Sheaf-popover {
+    left: 0;
+    transform: none;
+    width: ~"calc(100vw - 32px)";
+  }
+  .Sheaf-reply span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .Sheaf-reply {
+    padding: 12px 12px 12px 16px;
+  }
+  .Sheaf-iconButton {
+    width: 44px;
+  }
+}
+
+@keyframes Sheaf-in-phone {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .Sheaf-pill {
+    animation: none;
+  }
+}

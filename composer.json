@@ -1,0 +1,45 @@
+{
+    "name": "ernestdefoe/sheaf",
+    "description": "Multi-quote for Flarum: collect quotes from several posts, even across discussions, then reply once with all of them.",
+    "keywords": [
+        "flarum",
+        "flarum-extension",
+        "quote",
+        "multi-quote",
+        "mentions"
+    ],
+    "type": "flarum-extension",
+    "license": "MIT",
+    "homepage": "https://github.com/ernestdefoe/sheaf",
+    "support": {
+        "issues": "https://github.com/ernestdefoe/sheaf/issues",
+        "source": "https://github.com/ernestdefoe/sheaf"
+    },
+    "authors": [
+        {
+            "name": "Ernest Defoe",
+            "email": "ernestdefoe@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.3",
+        "flarum/core": "^2.0"
+    },
+    "suggest": {
+        "flarum/mentions": "Quotes are inserted as post mentions, so the quoted members are notified and the quotes link back to their posts. Also adds 'Add to multi-quote' to the selected-text quote button."
+    },
+    "extra": {
+        "flarum-extension": {
+            "title": "Sheaf",
+            "category": "feature",
+            "icon": {
+                "name": "fas fa-quote-right",
+                "backgroundColor": "#0f766e",
+                "color": "#fff"
+            }
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
